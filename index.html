@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pratyush Acharya</title>
+<meta name="description" content="Pratyush Acharya — NLP researcher studying the internal representations of large language models and how to use them for post-training and alignment.">
+<meta name="author" content="Pratyush Acharya">
+<meta property="og:title" content="Pratyush Acharya">
+<meta property="og:description" content="NLP researcher: LLM representations, interpretability, and alignment. EMNLP 2026.">
+<meta property="og:image" content="https://pratyush-acharya.github.io/assets/photo.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/photo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfbf9;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #5f6368;
+    --faint: #e7e5e0;
+    --accent: #1f5fae;
+    --accent-soft: #e8f0fb;
+    --highlight: #fff6db;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121417;
+      --surface: #1a1d21;
+      --text: #e8e8e6;
+      --muted: #a0a4aa;
+      --faint: #2b2f35;
+      --accent: #7fb2f0;
+      --accent-soft: #1d2a3a;
+      --highlight: #2c2718;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121417;
+    --surface: #1a1d21;
+    --text: #e8e8e6;
+    --muted: #a0a4aa;
+    --faint: #2b2f35;
+    --accent: #7fb2f0;
+    --accent-soft: #1d2a3a;
+    --highlight: #2c2718;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 820px; margin: 0 auto; padding: 56px 16px 72px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; line-height: 1.25; }
+  h1 { font-size: 2.2rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 {
+    font-size: 1.35rem; margin: 48px 0 16px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--faint);
+  }
+  p { margin: 0 0 14px; }
+
+  /* Header */
+  .intro { display: grid; grid-template-columns: 1fr 180px; gap: 36px; align-items: start; }
+  .tagline { color: var(--muted); font-size: 1.02rem; margin-bottom: 18px; }
+  .photo { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 1px solid var(--faint); }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .links a {
+    font-size: 0.88rem; font-weight: 500; padding: 5px 12px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  .links a:hover { text-decoration: none; filter: brightness(0.97); }
+  .callout {
+    margin-top: 20px; padding: 12px 16px; border-radius: 8px;
+    background: var(--highlight); font-size: 0.95rem;
+  }
+
+  /* Lists */
+  ul.plain { list-style: none; padding: 0; margin: 0; }
+  .news li { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 6px 0; }
+  .date { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; padding-top: 1px; }
+
+  .interests { padding-left: 20px; margin: 0; }
+  .interests li { margin-bottom: 6px; }
+
+  /* Publications */
+  .pub { padding: 18px 0; border-bottom: 1px solid var(--faint); }
+  .pub:last-child { border-bottom: 0; }
+  .pub.featured {
+    background: var(--surface); border: 1px solid var(--faint); border-radius: 10px;
+    padding: 20px; margin-bottom: 12px;
+  }
+  .pub-title { font-weight: 600; font-size: 1.02rem; margin-bottom: 2px; }
+  .authors { color: var(--muted); font-size: 0.93rem; }
+  .authors .me { color: var(--text); font-weight: 600; }
+  .venue { font-size: 0.9rem; font-style: italic; color: var(--muted); margin-top: 2px; }
+  .venue strong { font-style: normal; color: var(--text); }
+  .badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 4px;
+    background: var(--accent); color: var(--bg); margin-left: 6px; vertical-align: 2px;
+  }
+  .pub-links { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.9rem; font-weight: 500; }
+  .tldr { font-size: 0.94rem; margin-top: 10px; }
+  .figure { margin: 14px 0 4px; }
+  .figure img { width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--faint); background: #fff; }
+  .figure figcaption { font-size: 0.83rem; color: var(--muted); margin-top: 6px; }
+
+  /* Experience */
+  .role { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 10px 0; }
+  .role .org { font-weight: 600; }
+  .role .when { color: var(--muted); font-size: 0.9rem; text-align: right; white-space: nowrap; }
+  .role .what { grid-column: 1 / -1; color: var(--muted); font-size: 0.94rem; }
+
+  footer { margin-top: 56px; color: var(--muted); font-size: 0.85rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .theme-toggle {
+    background: none; border: 1px solid var(--faint); color: var(--muted);
+    border-radius: 999px; padding: 3px 12px; font: inherit; cursor: pointer;
+  }
+
+  @media (max-width: 640px) {
+    main { padding-top: 32px; }
+    .intro { grid-template-columns: 1fr; gap: 20px; }
+    .photo { width: 128px; height: 128px; order: -1; }
+    h1 { font-size: 1.85rem; }
+    .news li { grid-template-columns: 1fr; gap: 0; }
+    .role { grid-template-columns: 1fr; }
+    .role .when { text-align: left; }
+    .pub.featured { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <section class="intro">
+    <div>
+      <h1>Pratyush Acharya</h1>
+      <div class="tagline">NLP Researcher · LLM Representations, Interpretability &amp; Alignment · Kathmandu, Nepal</div>
+
+      <p>I study how large language models represent concepts internally, and how that understanding can make
+      post-training more targeted, producing models that are both better aligned and more capable.</p>
+
+      <p>My EMNLP 2026 paper, <a href="https://arxiv.org/abs/2605.01609"><em>Concepts Whisper</em></a>, shows that across
+      17 transformers, semantic concept directions systematically avoid high-variance directions and are instead
+      encoded in <em>spectrally quiet</em> subspaces. The finding holds across difference-of-means vectors, sparse
+      autoencoders, and linear probes. Next, I want to use this geometry to guide steering, SFT, preference
+      optimization, and RL.</p>
+
+      <p>I am currently a Data Scientist at <a href="https://www.securitypalhq.com/">SecurityPal AI</a>, building retrieval, evaluation,
+      and agentic LLM systems. I received my B.Sc. in Computer Science and Information Technology from Tribhuvan University (2024).</p>
+
+      <div class="links">
+        <a href="mailto:acharya.pratyush12@gmail.com">Email</a>
+        <a href="assets/Pratyush_Acharya_CV.pdf">CV</a>
+        <a href="https://github.com/pratyush-acharya">GitHub</a>
+        <!-- <a href="https://scholar.google.com/citations?user=YOUR_ID">Google Scholar</a> -->
+        <a href="https://linkedin.com/in/pratyush-acharya">LinkedIn</a>
+      </div>
+
+      <div class="callout">🎓 I am applying to <strong>CS PhD programs for Fall 2027</strong>. I'd be glad to hear from you if our interests overlap.</div>
+    </div>
+    <img class="photo" src="assets/photo.jpg" alt="Portrait of Pratyush Acharya" width="180" height="180">
+  </section>
+
+  <h2>News</h2>
+  <ul class="plain news">
+    <li><span class="date">Oct 2026</span><span>Presenting <em>Concepts Whisper</em> at <strong>EMNLP 2026</strong>: Poster Session F, Oct 27, 09:00–10:30, Hall H. Come say hi!</span></li>
+    <li><span class="date">2026</span><span><em>Concepts Whisper</em> accepted to the <strong>EMNLP 2026 Main Conference</strong>.</span></li>
+    <li><span class="date">Apr 2026</span><span>Preprint on the pedagogical readiness of LLMs as AI tutors for Nepal's K–10 curriculum.</span></li>
+    <li><span class="date">Mar 2026</span><span>Preprint modeling grokking as a variance-limited phase transition.</span></li>
+    <li><span class="date">Sep 2024</span><span>Joined SecurityPal AI as a Data Scientist.</span></li>
+  </ul>
+
+  <h2>Research Interests</h2>
+  <ul class="interests">
+    <li><strong>Representation geometry:</strong> how concepts are laid out in the residual stream and unembedding space, and why.</li>
+    <li><strong>Mechanistic interpretability:</strong> sparse autoencoders, linear probes, causal interventions, activation steering.</li>
+    <li><strong>Interpretability for post-training:</strong> using internal signals to steer, regularize, and monitor SFT, preference optimization, and RL.</li>
+    <li><strong>Training dynamics:</strong> spectral views of generalization, such as grokking.</li>
+  </ul>
+
+  <h2>Publications</h2>
+
+  <div class="pub featured">
+    <div class="pub-title">Concepts Whisper: Spectral Anti-Concentration and the Dual Geometry of Transformer Representations <span class="badge">EMNLP 2026</span></div>
+    <div class="authors"><span class="me">Pratyush Acharya</span>, Nuraj Rimal, Habish Dhakal</div>
+    <div class="venue"><strong>EMNLP 2026</strong>, Main Conference</div>
+    <div class="pub-links">
+      <a href="https://arxiv.org/abs/2605.01609">arXiv</a>
+      <a href="https://arxiv.org/pdf/2605.01609">PDF</a>
+      <a href="https://github.com/pratyush-acharya/spectral_anti_concentration">Code</a>
+    </div>
+    <figure class="figure" id="fig-main">
+      <img src="assets/concepts_whisper_fig.png" alt="Layer-wise spectral concentration of concept directions across models" loading="lazy"
+           onerror="document.getElementById('fig-main').remove()">
+      <figcaption><strong>The dual geometry.</strong> Static vocabulary contrasts concentrate in the high-variance head of the unembedding covariance spectrum, while contextual activation-space concept directions (from difference-of-means, SAE features, and linear probes) anti-concentrate in the low-variance tail. Concepts "whisper" in the quiet tail.</figcaption>
+    </figure>
+    <p class="tldr">Across 17 models and 22 concept categories, residual-stream concept directions systematically avoid high-variance
+    eigendirections (p = 3.8×10⁻⁹), with converging evidence from SAEs and linear probes. We also identify a <em>dual geometry</em>:
+    activation-space concepts anti-concentrate, while static unembedding contrasts concentrate in high-variance directions.</p>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">Grokking as a Variance-Limited Phase Transition: Spectral Gating and the Epsilon-Stability Threshold</div>
+    <div class="authors"><span class="me">Pratyush Acharya</span>, Habish Dhakal</div>
+    <div class="venue">Preprint, 2026</div>
+    <div class="pub-links"><a href="https://arxiv.org/abs/2603.15492">arXiv</a><a href="https://arxiv.org/pdf/2603.15492">PDF</a></div>
+    <p class="tldr">Models grokking as a variance-gated transition in AdamW optimization, proposing spectral gating and three complexity regimes that govern the shift from memorization to generalization.</p>
+  </div>
+
+  <div class="pub">
+    <div class="pub-title">Assessing the Pedagogical Readiness of Large Language Models as AI Tutors in Low-Resource Contexts: A Case Study of Nepal's K-10 Curriculum</div>
+    <div class="authors"><span class="me">Pratyush Acharya</span> et al.</div>
+    <div class="venue">Preprint, 2026</div>
+    <div class="pub-links"><a href="https://arxiv.org/abs/2604.09619">arXiv</a><a href="https://arxiv.org/pdf/2604.09619">PDF</a></div>
+    <p class="tldr">A curriculum-aligned benchmark and seven-metric evaluation framework for LLM tutoring, identifying failure modes such as the "Expert's Curse" and "Contextual Blindspot."</p>
+  </div>
+
+  <h2>Experience</h2>
+  <div class="role">
+    <span class="org">SecurityPal AI · Data Scientist</span><span class="when">Sep 2024 – Present</span>
+    <span class="what">Fine-tuned domain embedding models (+21% search accuracy, 3× lower latency), built graph-RAG and LLM evaluation harnesses, and shipped extraction pipelines that save 40–60 analyst-hours per week.</span>
+  </div>
+  <div class="role">
+    <span class="org">Invisible Technologies · Advanced AI Trainer</span><span class="when">Apr 2024 – Aug 2024</span>
+    <span class="what">Curated supervised fine-tuning data and evaluated LLM-generated code against quality rubrics.</span>
+  </div>
+  <div class="role">
+    <span class="org">Waterflow Technology · Associate AI Engineer</span><span class="when">May 2023 – Nov 2023</span>
+    <span class="what">Built RAG pipelines and benchmarked open-source LLMs against GPT-series models.</span>
+  </div>
+  <div class="role">
+    <span class="org">Deerwalk Training Center · Trainer &amp; Mentor</span><span class="when">Mar 2023 – Present</span>
+    <span class="what">Teach data science and machine learning through hands-on projects; mentored students in software engineering.</span>
+  </div>
+
+  <footer>
+    <span>© 2026 Pratyush Acharya · Last updated Sep 2026</span>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">Toggle theme</button>
+  </footer>
+</main>
+<script>
+  (function () {
+    var root = document.documentElement, key = "theme";
+    try { var saved = localStorage.getItem(key); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+    document.getElementById("themeToggle").addEventListener("click", function () {
+      var cur = root.getAttribute("data-theme") ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      var next = cur === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem(key, next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
