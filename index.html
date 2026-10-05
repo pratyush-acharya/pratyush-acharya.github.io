@@ -149,8 +149,8 @@
       post-training more targeted, producing models that are both better aligned and more capable.</p>
 
       <p>My EMNLP 2026 paper, <a href="https://arxiv.org/abs/2605.01609"><em>Concepts Whisper</em></a>, shows that across
-      17 transformers, semantic concept directions systematically avoid high-variance directions and are instead
-      encoded in <em>spectrally quiet</em> subspaces. The finding holds across difference-of-means vectors, sparse
+      17 transformers, semantic concept directions systematically avoid the high-variance directions of the unembedding
+      covariance and are instead encoded in <em>spectrally quiet</em> subspaces. The finding holds across difference-of-means vectors, sparse
       autoencoders, and linear probes. Next, I want to use this geometry to guide steering, SFT, preference
       optimization, and RL.</p>
 
@@ -161,7 +161,7 @@
         <a href="mailto:acharya.pratyush12@gmail.com">Email</a>
         <a href="assets/Pratyush_Acharya_CV.pdf">CV</a>
         <a href="https://github.com/pratyush-acharya">GitHub</a>
-        <!-- <a href="https://scholar.google.com/citations?user=YOUR_ID">Google Scholar</a> -->
+        <a href="https://scholar.google.com/citations?hl=en&amp;user=EljthPQAAAAJ">Google Scholar</a>
         <a href="https://linkedin.com/in/pratyush-acharya">LinkedIn</a>
       </div>
 
@@ -203,9 +203,10 @@
            onerror="document.getElementById('fig-main').remove()">
       <figcaption><strong>The dual geometry.</strong> Static vocabulary contrasts concentrate in the high-variance head of the unembedding covariance spectrum, while contextual activation-space concept directions (from difference-of-means, SAE features, and linear probes) anti-concentrate in the low-variance tail. Concepts "whisper" in the quiet tail.</figcaption>
     </figure>
-    <p class="tldr">Across 17 models and 22 concept categories, residual-stream concept directions systematically avoid high-variance
-    eigendirections (p = 3.8×10⁻⁹), with converging evidence from SAEs and linear probes. We also identify a <em>dual geometry</em>:
-    activation-space concepts anti-concentrate, while static unembedding contrasts concentrate in high-variance directions.</p>
+    <p class="tldr">Difference-of-means concept directions anti-concentrate in all 17 models (mean Gini deviation −0.28; model-level p = 3.8×10⁻⁹),
+    replicate on an expanded set of 22 semantic categories, and are corroborated by SAE features and linear probes. We also identify a <em>dual geometry</em>:
+    activation-space concepts anti-concentrate, while static unembedding contrasts concentrate in high-variance directions (p &lt; 10⁻⁴).
+    Split-injection steering experiments show that interventions in the quiet tail cause less grammatical disruption in most models tested.</p>
   </div>
 
   <div class="pub">
@@ -243,7 +244,7 @@
   </div>
 
   <footer>
-    <span>© 2026 Pratyush Acharya · Last updated Sep 2026</span>
+    <span>© 2026 Pratyush Acharya · Last updated Oct 2026</span>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">Toggle theme</button>
   </footer>
 </main>
